@@ -72,6 +72,4 @@ function setupServer() {
 
 setupServer();
 
-console.log(process.env.MODEM_PORT);
-
 export { app };

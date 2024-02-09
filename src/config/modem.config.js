@@ -5,8 +5,6 @@ dotenv.config();
 export const modem = serialportgsm.Modem();
 export const modemPort = process.env.MODEM_PORT;
 
-// export const modemPort = '/dev/ttyUSB0';
-
 export const modemOptions = {
   baudRate: 115200,
   dataBits: 8,
