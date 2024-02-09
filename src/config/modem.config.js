@@ -1,7 +1,9 @@
 import serialportgsm from 'serialport-gsm';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export const modem = serialportgsm.Modem();
-export const modemPort = '/dev/ttyUSB0';
+export const modemPort = process.env.MODEM_PORT;
 
 export const modemOptions = {
   baudRate: 115200,

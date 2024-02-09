@@ -3,15 +3,15 @@ import express from 'express';
 import { smsRouter } from './routes/sms.router.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { modem, modemPort, modemOptions } from './config/modem.config.js';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
 app.use((req, res, next) => {
   console.log('---------------------------------------------------');
-  console.log(
-    `New request, Target: ${req.body.recipient} - ${req.body.message}`
-  );
+  console.log(`New request: ${req.body.recipient} - ${req.body.message}`);
 
   next();
 });
