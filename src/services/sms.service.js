@@ -7,9 +7,16 @@ dotenv.config();
 export class SmsService {
   async sendSms(recipient, message) {
     const timeoutPeriod = process.env.TIMEOUT || 30000;
-    const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('Timeout error')), timeoutPeriod)
-    );
+
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => {
+        const timeoutError = new Error(
+          `Timeout error occurred while sending SMS to ${recipient}`
+        );
+        logger.error(timeoutError.message);
+        reject(timeoutError);
+      }, timeoutPeriod);
+    });
 
     const result = await Promise.race([
       modem.sendSMS(recipient, message, false),
@@ -25,9 +32,11 @@ export class SmsService {
         )}`
       );
 
-      const err = new Error(`Error occurred while sending SMS to ${recipient}`);
+      const error = new Error(
+        `Error occurred while sending SMS to ${recipient}`
+      );
 
-      throw err;
+      throw error;
     }
 
     logger.info(`Message successfully has sent to ${recipient}`);
