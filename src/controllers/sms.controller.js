@@ -21,7 +21,6 @@ export class SmsController {
         message: result,
       });
 
-      console.error(err);
       next(err);
     }
   }
