@@ -1,8 +1,0 @@
-{"level":"info","message":"Server started at localhost:3000"}
-{"level":"info","message":"GSM-modem port opened"}
-{"level":"info","message":"Server started at localhost:3000"}
-{"level":"info","message":"GSM-modem port opened"}
-{"level":"info","message":"Server started at localhost:3000"}
-{"level":"info","message":"GSM-modem port opened"}
-{"level":"info","message":"Server started at localhost:3000"}
-{"level":"info","message":"GSM-modem port opened"}
