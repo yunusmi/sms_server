@@ -1,28 +1,37 @@
+import * as dotenv from 'dotenv';
 import { modem } from '../config/modem.config.js';
 import { logger } from '../utils/logger.js';
 
+dotenv.config();
+
 export class SmsService {
   async sendSms(recipient, message) {
-    const result = await modem.sendSMS(recipient, message, false);
+    const timeoutPeriod = process.env.TIMEOUT || 30000;
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Timeout error')), timeoutPeriod)
+    );
 
-    logger.info(`Start sending message to recipient ${recipient}`);
+    const result = await Promise.race([
+      modem.sendSMS(recipient, message, false),
+      timeoutPromise,
+    ]);
 
-    if (result.status !== 'success') {
+    logger.info(`Start sending SMS to ${recipient}`);
+
+    if (result.status === 'fail' || result.status !== 'success') {
       logger.error(
-        `Error occurred while sending SMS to recipient: ${recipient} - ${JSON.stringify(
+        `Error occurred while sending SMS to ${recipient} - ${JSON.stringify(
           result
         )}`
       );
 
-      const err = new Error(
-        `Error occurred while sending SMS to recipient ${recipient}`
-      );
+      const err = new Error(`Error occurred while sending SMS to ${recipient}`);
 
       throw err;
     }
 
-    logger.info(`Message successfully has been sent to recipient ${recipient}`);
+    logger.info(`Message successfully has sent to ${recipient}`);
 
-    return `Message successfully has been sent to recipient ${recipient}`;
+    return `Message successfully has sent to ${recipient}`;
   }
 }

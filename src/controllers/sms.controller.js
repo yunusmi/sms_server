@@ -15,13 +15,13 @@ export class SmsController {
         success: true,
         message: result,
       });
-    } catch (err) {
+    } catch (error) {
       res.status(500).json({
         success: false,
-        message: result,
+        message: error,
       });
 
-      next(err);
+      next(error);
     }
   }
 }
