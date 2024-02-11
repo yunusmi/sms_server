@@ -19,7 +19,7 @@ export class SmsService {
     });
 
     const result = await Promise.race([
-      modem.sendSMS(recipient, message, false),
+      modem.sendSMS(recipient, message, process.env.SMS_TYPE || false),
       timeoutPromise,
     ]);
 
