@@ -1,15 +1,13 @@
 {
-  "name": "SMS server",
+  "name": "node-sms-server",
   "version": "2.0.0",
-  "description": "SMS server for Unite Gaming project. You also can use it for yourself. For more information see on https://github.com/yunusmi/sms_server",
+  "description": "SMS server to send text/flash messages from your apps to recipients's phone number server with connected GSM modem.",
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js"
   },
   "type": "module",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
@@ -19,5 +17,32 @@
   },
   "devDependencies": {
     "pino-pretty": "^10.3.1"
-  }
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "author": "Yunus Ashyrov <contact@yunus-mil.ru> (https://github.com/yunusmi)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yunusmi/node_sms_server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yunusmi/node_sms_server/issues"
+  },
+  "homepage": "https://github.com/yunusmi/node_sms_server#readme",
+  "keywords": [
+    "sms message",
+    "sms server",
+    "flash message",
+    "send sms",
+    "gsm",
+    "at",
+    "sms",
+    "modem",
+    "serial port",
+    "serialport",
+    "serial",
+    "com",
+    "port"
+  ]
 }
