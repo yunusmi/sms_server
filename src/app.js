@@ -52,7 +52,7 @@ function setupServer() {
       } else {
         logger.info(`Set Mode: ${JSON.stringify(message)}`);
       }
-    }, 'PDU');
+    }, process.env.MODEM_MODE);
 
     modem.getNetworkSignal((result, err) => {
       if (err) {

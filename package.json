@@ -1,7 +1,7 @@
 {
-  "name": "node-sms-server",
+  "name": "SMS server",
   "version": "2.0.0",
-  "description": "SMS server to send text/flash messages from your apps to recipients's phone number server with connected GSM modem.",
+  "description": "SMS server to send text/flash messages from your apps to recipients's phone number with the help of server with connected GSM modem.",
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js"
@@ -24,12 +24,12 @@
   "author": "Yunus Ashyrov <contact@yunus-mil.ru> (https://github.com/yunusmi)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunusmi/node_sms_server.git"
+    "url": "https://github.com/yunusmi/sms_server.git"
   },
   "bugs": {
-    "url": "https://github.com/yunusmi/node_sms_server/issues"
+    "url": "https://github.com/yunusmi/sms_server/issues"
   },
-  "homepage": "https://github.com/yunusmi/node_sms_server#readme",
+  "homepage": "https://github.com/yunusmi/sms_server#readme",
   "keywords": [
     "sms message",
     "sms server",
