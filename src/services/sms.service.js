@@ -25,7 +25,7 @@ export class SmsService {
 
     logger.info(`Start sending SMS to ${recipient}`);
 
-    if (!result || result.status === 'fail' || result.status !== 'success') {
+    if (result.status === 'fail' || result.status !== 'success') {
       logger.error(
         `Error occurred while sending SMS to ${recipient} - ${JSON.stringify(
           result
