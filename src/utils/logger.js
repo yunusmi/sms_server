@@ -14,6 +14,11 @@ export const logger = {
     pinoLogger.error(message);
     winstonLogger.error(message);
   },
+
+  warn: function (message) {
+    pinoLogger.warn(message);
+    winstonLogger.warn(message);
+  },
 };
 
 const formattedDate = getFormattedDate();

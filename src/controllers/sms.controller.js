@@ -18,7 +18,7 @@ export class SmsController {
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: error,
+        message: error.message,
       });
 
       next(error);
