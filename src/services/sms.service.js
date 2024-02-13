@@ -6,41 +6,57 @@ dotenv.config();
 
 export class SmsService {
   async sendSms(recipient, message) {
+    logger.info(`Start sending SMS to ${recipient}`);
+
     const timeoutPeriod = process.env.TIMEOUT || 30000;
 
+    let timeoutId;
+
     const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         const timeoutError = new Error(
           `Timeout error occurred while sending SMS to ${recipient}`
         );
-        logger.error(timeoutError.message);
+        logger.error(timeoutError);
         reject(timeoutError);
       }, timeoutPeriod);
     });
 
-    const result = await Promise.race([
-      modem.sendSMS(recipient, message, process.env.SMS_TYPE || false),
-      timeoutPromise,
-    ]);
+    const sendSMSPromise = new Promise((resolve, reject) => {
+      modem
+        .sendSMS(recipient, message, process.env.SMS_TYPE || false)
+        .then((result) => {
+          clearTimeout(timeoutId);
 
-    logger.info(`Start sending SMS to ${recipient}`);
+          if (result.status === 'fail' || result.status !== 'success') {
+            logger.error(
+              `Error occurred while sending SMS to ${recipient} - ${JSON.stringify(
+                result
+              )}`
+            );
 
-    if (result.status === 'fail' || result.status !== 'success') {
-      logger.error(
-        `Error occurred while sending SMS to ${recipient} - ${JSON.stringify(
-          result
-        )}`
-      );
+            const error = new Error(
+              `Error occurred while sending SMS to ${recipient}`
+            );
 
-      const error = new Error(
-        `Error occurred while sending SMS to ${recipient}`
-      );
+            reject(error);
+          }
 
-      throw error;
-    }
+          resolve(result);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
 
-    logger.info(`Message successfully has sent to ${recipient}`);
+    return Promise.race([sendSMSPromise, timeoutPromise])
+      .then((_result) => {
+        logger.info(`Message successfully has sent to ${recipient}`);
 
-    return `Message successfully has sent to ${recipient}`;
+        return `Message successfully has sent to ${recipient}`;
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 }

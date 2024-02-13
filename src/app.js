@@ -1,7 +1,6 @@
 import http from 'http';
 import express from 'express';
 import { smsRouter } from './routes/sms.router.js';
-import { errorHandler } from './middlewares/errorHandler.js';
 import { modem, modemPort, modemOptions } from './config/modem.config.js';
 import { logger } from './utils/logger.js';
 import * as dotenv from 'dotenv';
@@ -18,7 +17,6 @@ app.use((req, res, next) => {
 });
 
 app.use(smsRouter);
-app.use(errorHandler);
 
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.originalUrl} not found`);
