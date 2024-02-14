@@ -69,6 +69,7 @@
 <ul>
 <li><b>MODEM_PORT</b> - address of the connected USB port (the command <b>ls /dev/ttyUSB*</b> shows a list of connected ports, for example <b>/dev/ttyUSB0</b>, described in the previous steps)</li>
 <li><b>MODEM_MODE</b> - modem operating mode. Can be <b>'SMS'</b> or <b>'PDU'</b>. By default <b>'PDU'</b></li>
+<li><b>MODEM_BAUD_RATE</b> - speed of GSM modem in bauds. Every GSM modem has own baud rate and they has different baud rate and speed of work. Their baud rate are depends on manufacturers. You can set for your type of modem maximum baud rate.</b>. By default <b>115200</b></li>
 <li><b>SMS_TYPE</b> - type of SMS sent. Can be a regular text message or a flash message. This variable must have a boolean value <b>(true/false)</b>. <b>False - if you want the system to send regular text SMS messages, true - if it should send flash messages. By default false</b></li>
 <li><b>APP_PORT</b> - port for the NodeJS application <b>(usually 3000). By default 3000</b></li>
 <li><b>APP_HOST</b> - host for the application <b>(usually localhost). By default localhost</b></li>
