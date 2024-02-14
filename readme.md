@@ -94,7 +94,7 @@ To install pm2, you need to enter the command:</p>
 <pre><code>pm2 start ./src/app.js
 </code></pre>
 
-<p>To send a message, you need to send a POST request in JSON format from your application to the address <br>
+<p>To send a message, you need to send a POST request in JSON format from your Web or BackEnd application (also you can send requests from query emulator programms as Postman or etc.) to the address <br>
 <b>http://YOUR_SMS_CONFIGURED_SERVER_ADDRESS:APP_PORT/send-sms</b>.
 Example request:</p>
 
