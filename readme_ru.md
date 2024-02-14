@@ -9,7 +9,7 @@
 <pre><code>
 {
     "recipient": "+99362000000", // номер получателя (без пробелов, в международном формате)
-    "message": "Hello. this SMS from sms_server application" // текст сообщения
+    "message": "Hello, this SMS from sms_server application" // текст сообщения
 }
 </code></pre>
 
@@ -94,16 +94,18 @@
 <pre><code>pm2 monit
 </code></pre>
 
-<p>Для отправки сообщения вам нужно отправить POST-запрос в формате JSON из вашего приложения на адрес <br>
+<p>Для отправки сообщения вам нужно отправить POST-запрос в формате JSON из вашего Web, Backend-приложения (можно также через эмулятор отправки запросов Postman) на адрес <br>
 <b>http://YOUR_SMS_CONFIGURED_SERVER_ADDRESS:APP_PORT/send-sms</b>.
 Пример запроса:</p>
 
 <pre><code>
 {
     "recipient": "+99362000000", // номер получателя (без пробелов, в международном формате)
-    "message": "Hello. this SMS from sms_server application" // текст сообщения
+    "message": "Hello, this SMS from sms_server application" // текст сообщения
 }
 </code></pre>
+
+<p>только вместо <b>+99362000000</b> введите свой номер телефона</p>
 
 <p>Приложение вернет ответ в формате JSON с информацией об отправке сообщения. Пример ответа:</p>
 
@@ -114,10 +116,16 @@
 }
 </code></pre>
 
+<p>Также можно отправить запрос из терминала системы (если curl установлен), откройте новое окно терминала и введите команду:</p>
+
+<pre><code>
+    curl -X POST http://127.0.0.1:APP_PORT/send-sms -H "Content-Type: application/json" -d '{"recipient": "+99362000000", "message": "Hello, this SMS from sms_server application"}'
+</code></pre>
+
 <p>Приложение также записывает отправленные сообщения и результаты, и выводит их в консоль в красивом и удобном виде. Пример вывода:</p>
 
 <pre><code>
-[2021-12-15 16:15:23] [INFO] New request: +99362000000 - Hello. this SMS from sms_server application
+[2021-12-15 16:15:23] [INFO] New request: +99362000000 - Hello, this SMS from sms_server application
 [2021-12-15 16:15:23] [INFO] Start sending SMS to +99362000000
 [2021-12-15 16:15:24] [INFO] Message successfully has sent to +99362000000
 </code></pre>

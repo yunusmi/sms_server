@@ -8,7 +8,7 @@
 <pre><code>
   {
     "recipient": "+99362000000", // recipient's number (without spaces, in international format)
-    "message": "Hello. this SMS from sms_server application" // message text
+    "message": "Hello, this SMS from sms_server application" // message text
   }
 </code></pre>
 
@@ -101,9 +101,11 @@ Example request:</p>
 <pre><code>
   {
     "recipient": "+99362000000", // recipient's number (without spaces, in international format)
-    "message": "Hello. this SMS from sms_server application" // message text
+    "message": "Hello, this SMS from sms_server application" // message text
   }
 </code></pre>
+
+<p>but put your real phone number instead <b>+99362000000</b></p>
 
 <p>The application will return a response in JSON format with information about sending the message. Example response:</p>
 
@@ -114,10 +116,16 @@ Example request:</p>
   }
 </code></pre>
 
+<p>You can also send a request from the system terminal (if curl is installed), open a new terminal window and enter the command:</p>
+
+<pre><code>
+    curl -X POST http://127.0.0.1:APP_PORT/send-sms -H "Content-Type: application/json" -d '{"recipient": "+99362000000", "message": "Hello, this SMS from sms_server application"}'
+</code></pre>
+
 <p>The application also logs the sent messages and results, and displays them in the console in a beautiful and convenient way. Example output:</p>
 
 <pre><code>
-[2021-12-15 16:15:23] [INFO] New request: +99362000000 - Hello. this SMS from sms_server application
+[2021-12-15 16:15:23] [INFO] New request: +99362000000 - Hello, this SMS from sms_server application
 [2021-12-15 16:15:23] [INFO] Start sending SMS to +99362000000
 [2021-12-15 16:15:24] [INFO] Message successfully has sent to +99362000000
 </code></pre>
