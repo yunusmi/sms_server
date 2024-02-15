@@ -6,7 +6,7 @@ export const modem = serialportgsm.Modem();
 export const modemPort = process.env.MODEM_PORT;
 
 export const modemOptions = {
-  baudRate: process.env.MODEM_BAUD_RATE || 115200,
+  baudRate: parseInt(process.env.MODEM_BAUD_RATE) || 115200,
   dataBits: 8,
   stopBits: 1,
   parity: 'none',
