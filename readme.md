@@ -123,6 +123,43 @@ Example request:</p>
     curl -X POST http://127.0.0.1:APP_PORT/send-sms -H "Content-Type: application/json" -d '{"recipient": "+99362000000", "message": "Hello, this SMS from sms_server application"}'
 </code></pre>
 
+<h3>Load testing</h3>
+<p>To test the load on sending SMS, the speed and performance of the GSM modem, there is a separate route (POST request to <b>/check-speed</b>), which takes 3 parameters: <b>count</b> - the number of sending cycles, <b>recipient</b> - the phone number of the recipient, <b>message</b> - the text of the message. An example of a request in the terminal using <b>curl</b>:</p>
+
+<pre><code>
+curl -X POST http://127.0.0.1:3000/check-speed -H "Content-Type: application/json" -d '{"recipient": "+99300000000", "message": "Test SMS message to check speed of GSM modem", "count": 100}'
+</code></pre>
+
+<p>After that, you can see the output of the start of testing in the terminal console:</p>
+
+<pre><code>
+[22:41:30.037] INFO (127282): --------------------------------
+[22:41:30.037] INFO (127282): New request: +99300000000 - Test SMS message to check speed of GSM modem
+[22:41:30.037] INFO (127282): Start testing
+[22:41:30.037] INFO (127282): Count of SMS: 100, message: Test SMS message to check speed of GSM modem, recipient number: +99300000000
+[22:41:30.038] INFO (127282): Start sending SMS to +99300000000
+</code></pre>
+
+<p>Then, the server will start sending SMS to the specified number, with the text specified in the body <b>message</b> the specified number of times. At this time, you can observe the output in the console logs, whether it is errors or successful sends. After finish the checking process, you will get this kind of output: </p>
+
+<pre><code>
+[22:42:08.057] INFO (127282): Test completed successfully
+[22:42:08.057] INFO (127282): Sent 100 SMS messages in 36326 ms
+[22:42:08.057] INFO (127282): Speed: 2.7 SMS/s
+[22:42:08.058] INFO (127282): Success: 99
+[22:42:08.058] INFO (127282): Failure: 1
+</code></pre>
+
+<p>You can do the same thing if you send a POST request to the same IP address and port, with the same body of the request in Postman or any other request emulator:</p>
+
+<pre><code>
+  {
+    "recipient": "+99300000000",
+    "message": "Test SMS message to check speed of GSM modem",
+    "count": 100
+  }
+</code></pre>
+
 <p>The application also logs the sent messages and results, and displays them in the console in a beautiful and convenient way. Example output:</p>
 
 <pre><code>
@@ -131,6 +168,7 @@ Example request:</p>
 [2021-12-15 16:15:24] [INFO] Message successfully has sent to +99362000000
 </code></pre>
 
+<h3>Logging to text and debugging errors</h3>
 <p>For client applications, the response from the server, whether errors or successful submissions, will contain short responses. For more detailed error research or tracking server response statuses, logging to a text file and output to the terminal console is provided. All log entries are stored in the <b>src/logs</b> directory. Every day, the system will create log entries for that day and save them in the same directory. The log file name starts with the current date and ends with <b>_log.txt</b></p>
 
 <p>In the log entries, <b>status</b> - message sending status, <b>message</b> - text description of the status, <b>data</b> - all data about the sent message, including the recipient's number, message text and link to the message in the modem.</p>

@@ -9,4 +9,9 @@ const smsRouter = Router();
 
 smsRouter.post('/send-sms', smsController.sendSms.bind(smsController));
 
+smsRouter.post(
+  '/check-speed',
+  smsController.testSmsSendingSpeed.bind(smsController)
+);
+
 export { smsRouter };
