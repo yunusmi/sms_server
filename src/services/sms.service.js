@@ -8,7 +8,7 @@ export class SmsService {
   async sendSms(recipient, message) {
     logger.info(`Start sending SMS to ${recipient}`);
 
-    const timeoutPeriod = process.env.TIMEOUT || 30000;
+    const timeoutPeriod = parseInt(process.env.TIMEOUT) || 30000;
 
     let timeoutId;
 
@@ -24,7 +24,7 @@ export class SmsService {
 
     const sendSMSPromise = new Promise((resolve, reject) => {
       modem
-        .sendSMS(recipient, message, process.env.SMS_TYPE || false)
+        .sendSMS(recipient, message, JSON.parse(process.env.SMS_TYPE) || false)
         .then((result) => {
           clearTimeout(timeoutId);
 
