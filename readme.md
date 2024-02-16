@@ -145,7 +145,7 @@ curl -X POST http://127.0.0.1:3000/check-speed -H "Content-Type: application/jso
 <pre><code>
 [22:42:08.057] INFO (127282): Test completed successfully
 [22:42:08.057] INFO (127282): Sent 100 SMS messages in 36326 ms
-[22:42:08.057] INFO (127282): Speed: 2.7 SMS/s
+[22:42:08.057] INFO (127282): Speed: 3 SMS/s
 [22:42:08.058] INFO (127282): Success: 99
 [22:42:08.058] INFO (127282): Failure: 1
 </code></pre>
