@@ -2,8 +2,8 @@ import { SmsService } from '../services/sms.service.js';
 import { logger } from '../utils/logger.js';
 
 export class SmsController {
-  constructor(smsService) {
-    this.smsService = smsService;
+  constructor() {
+    this.smsService = new SmsService();
   }
 
   async sendSms(req, res, next) {
