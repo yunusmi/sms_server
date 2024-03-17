@@ -1,3 +1,5 @@
+<p>Документация <b>на русском</b> <a href="https://github.com/yunusmi/sms_server/blob/main/readme_ru.md">здесь</a></p>
+
 <h1>SMS server for sending messages using GSM modem</h1>
 
 <p>This application allows you to send text SMS and flash messages from your server with a connected GSM modem to recipients by phone number. The application also logs the sent messages and results, and displays them in the console in a beautiful and convenient way. The application is written in JavaScript via NodeJS & <a href="https://www.npmjs.com/package/express" target="_blank">Express</a> framework, and also uses the <a href="https://www.npmjs.com/package/serialport-gsm" target="_blank">serialport-gsm</a> library to access the connected USB devices via NodeJS. The application can be used both for monolithic applications and in a microservice architecture.</p>
